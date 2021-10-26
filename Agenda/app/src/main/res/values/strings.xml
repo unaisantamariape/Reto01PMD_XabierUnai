@@ -5,4 +5,7 @@
     <string name="texto_btnLogin">Login</string>
     <string name="texto_toastLoginIncorrecto">Introduzca un user y pass correctos</string>
     <string name="texto_iconAgenda">Icono de agenda</string>
+    <string name="texto_botonVolver">Volver</string>
+    <string name="texto_botonCrear">Nueva tarea</string>
+    <string name="texto_botonVerLista">Ver tareas</string>
 </resources>
