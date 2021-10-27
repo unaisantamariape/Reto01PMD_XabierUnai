@@ -9,4 +9,8 @@
     <string name="texto_botonCrear">Nueva tarea</string>
     <string name="texto_botonVerLista">Ver tareas</string>
     <string name="texto_switchRecordarUser">¿Recordar Usuario?</string>
+    <string name="texto_botonRegistrar">Registrar</string>
+    <string name="texto_botonCancelar">Cancelar</string>
+    <string name="texto_nombre">Nombre</string>
+    <string name="texto_descripcion">Descripción</string>
 </resources>
