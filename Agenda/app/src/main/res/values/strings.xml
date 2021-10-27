@@ -8,4 +8,5 @@
     <string name="texto_botonVolver">Volver</string>
     <string name="texto_botonCrear">Nueva tarea</string>
     <string name="texto_botonVerLista">Ver tareas</string>
+    <string name="texto_switchRecordarUser">¿Recordar Usuario?</string>
 </resources>
