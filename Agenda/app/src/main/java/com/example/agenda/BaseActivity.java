@@ -21,12 +21,12 @@ public class BaseActivity extends AppCompatActivity{
         setContentView(R.layout.activity_base);
 
         botonCrear = (ImageButton) findViewById(R.id.idImageButtonNuevaTarea);
-
-
         botonVerLista = (ImageButton) findViewById(R.id.idImageButtonVerTareas);
-
-
         botonVolver = (ImageButton) findViewById(R.id.idImageButtonVolver);
+        botonVolver.setOnClickListener(view -> {
+            Intent intent = new Intent(BaseActivity.this, MainActivity.class);
+            finish();
+        });
 
     }
 }

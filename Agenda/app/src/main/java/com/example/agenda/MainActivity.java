@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
                 //Login correcto
                 DataManager dbManager = new DataManager(MainActivity.this);
                 SQLiteDatabase db = dbManager.getWritableDatabase();
-                //Intent intent = new Intent(MainActivity.this,BaseActivity.class);
-                //startActivity(intent);
+
+                Intent intent = new Intent(MainActivity.this,BaseActivity.class);
+                startActivity(intent);
             }else{
                 //Login incorrecto
                 Toast.makeText(this,R.string.texto_toastLoginIncorrecto,Toast.LENGTH_LONG).show();
