@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
             if(userIntroducido.equals(user) && passIntroducido.equals(pass)){
                 //Login correcto
+                Intent intent = new Intent(MainActivity.this,BaseActivity.class);
+                startActivity(intent);
             }else{
                 //Login incorrecto
                 Toast.makeText(this,R.string.texto_toastLoginIncorrecto,Toast.LENGTH_LONG).show();

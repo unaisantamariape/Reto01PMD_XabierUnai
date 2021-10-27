@@ -5,52 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton_nuevaTarea"
-        android:layout_width="102dp"
-        android:layout_height="99dp"
-        android:background="@drawable/icono_newTarea"
-        android:contentDescription="@string/texto_botonCrear"
-        android:tooltipText="@string/texto_botonCrear"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139"
-        app:srcCompat="@drawable/icono_agenda"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton_verTareas"
-        android:layout_width="102dp"
-        android:layout_height="99dp"
-        android:contentDescription="@string/texto_botonVerLista"
-        android:tooltipText="@string/texto_botonVerLista"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471"
-        app:srcCompat="@drawable/icono_agenda"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton_volver"
-        android:layout_width="102dp"
-        android:layout_height="99dp"
-        android:contentDescription="@string/texto_botonVolver"
-        android:tooltipText="@string/texto_botonVolver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811"
-        app:srcCompat="@drawable/icono_agenda"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
