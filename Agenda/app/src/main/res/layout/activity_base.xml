@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/idTextViewNuevaTarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/texto_botonCrear"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.285" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/idTextViewVerTarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/texto_botonVerLista"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.596" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/idTextViewVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/texto_botonVolver"
