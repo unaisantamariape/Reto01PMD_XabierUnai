@@ -62,16 +62,32 @@ public class DataManager extends SQLiteOpenHelper {
         onCreate(sQLiteDatabase);
     }
 
-    //------------------------------ Select Nombres ------------------------------//
-    public ArrayList<String> selectNombres () {
-        String query = " Select "+ NOMBRE + " FROM " + TABLE_NAME ;
+    //------------------------------ Select Nombres Pendientes ------------------------------//
+    public ArrayList<String> selectNombresPendientes() {
+        String query = " Select "+ NOMBRE + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=0";
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sQLiteDatabase.rawQuery(query, null);
 
         ArrayList<String> nombres = new ArrayList<>() ;
         int i = 0;
         while (cursor.moveToNext()) {
+            nombres.add(cursor.getString(0).toString());
+            i++;
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return nombres;
+    }
 
+    //------------------------------ Select Nombres Realizados ------------------------------//
+    public ArrayList<String> selectNombresRealizados() {
+        String query = " Select "+ NOMBRE + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=1";
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        ArrayList<String> nombres = new ArrayList<>() ;
+        int i = 0;
+        while (cursor.moveToNext()) {
             nombres.add(cursor.getString(0).toString());
             i++;
         }
