@@ -9,9 +9,13 @@
         <entry key="..\:/AndroidStudioWorkspace/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_main.xml" value="0.1661600810536981" />
         <entry key="..\:/AndroidStudioWorkspace/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_register.xml" value="0.1661600810536981" />
         <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Agenda/app/src/main/res/layout/activity_main.xml" value="0.1641337386018237" />
-        <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_adapter.xml" value="0.1641337386018237" />
         <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_base.xml" value="0.25" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_list.xml" value="0.25" />
+=======
+        <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_list.xml" value="0.1641337386018237" />
+>>>>>>> Stashed changes
         <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/in2dam-b/AndroidStudioProjects/Reto01PMD_XabierUnai/Agenda/app/src/main/res/layout/activity_register.xml" value="0.1641337386018237" />
       </map>

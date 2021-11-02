@@ -27,4 +27,6 @@
     <string name="texto_checkBoxRealizada">Realizada</string>
     <string name="texto_botonTareasRealizadas">Realizadas</string>
     <string name="texto_botonTareasPendientes">Pendientes</string>
+    <string name="texto_botonModificar">Modificar</string>
+    <string name="texto_botonBorrar">Borrar</string>
 </resources>
