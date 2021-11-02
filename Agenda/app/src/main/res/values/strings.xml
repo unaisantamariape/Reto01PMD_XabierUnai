@@ -13,4 +13,17 @@
     <string name="texto_botonCancelar">Cancelar</string>
     <string name="texto_nombre">Nombre</string>
     <string name="texto_descripcion">Descripción</string>
+    <string name="texto_fecha">Fecha</string>
+    <string name="texto_coste">Coste</string>
+    <string-array name="Prioridad">
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Alta</item>
+        <item>Urgente</item>
+    </string-array>
+    <string name="texto_prioridadMedia">Media</string>
+    <string name="texto_prioridadAlta">Alta</string>
+    <string name="texto_prioridadUrgente">Urgente</string>
+    <string name="texto_realizada">Realizada</string>
+    <string name="texto_pendiente">Pendiente</string>
 </resources>
