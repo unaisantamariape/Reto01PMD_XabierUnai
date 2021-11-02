@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.926" />
 
     <Button
-        android:id="@+id/idButtonCancelar"
+        android:id="@+id/idButtonCancelarRegistro"
         android:layout_width="144dp"
         android:layout_height="59dp"
         android:text="@string/texto_botonCancelar"
@@ -30,32 +30,106 @@
         app:layout_constraintVertical_bias="0.925" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="193dp"
-        android:layout_height="48dp"
+        android:id="@+id/idEditTextNombre"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#673AB7"
+        android:backgroundTintMode="add"
         android:ems="10"
+        android:hint="@string/texto_nombre"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:text="@string/texto_nombre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.054"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="348dp"
-        android:layout_height="48dp"
+        android:id="@+id/IdEditTextDescripcion"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#673AB7"
+        android:backgroundTintMode="add"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/texto_descripcion"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.194" />
+
+    <EditText
+        android:id="@+id/IdEditTextFecha"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#673AB7"
+        android:backgroundTintMode="add"
+        android:ems="10"
+        android:hint="@string/texto_fecha"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
+
+    <EditText
+        android:id="@+id/IdEditTextCoste"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#673AB7"
+        android:backgroundTintMode="add"
+        android:ems="10"
+        android:hint="@string/texto_coste"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Spinner
+        android:id="@+id/idSpinnerPrioridad"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#673AB7"
+        android:backgroundTintMode="add"
+        android:entries="@array/Prioridad"
+        android:foregroundTint="#FFFFFF"
+        android:minHeight="48dp"
+        android:splitMotionEvents="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.627" />
+
+    <CheckBox
+        android:id="@+id/idCheckBoxRealizada"
+        android:layout_width="250dp"
+        android:layout_height="57dp"
+        android:buttonTint="#673AB7"
+        android:buttonTintMode="src_in"
+        android:text="@string/texto_realizada"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
