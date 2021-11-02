@@ -22,6 +22,10 @@ public class BaseActivity extends AppCompatActivity{
 
         botonCrear = (ImageButton) findViewById(R.id.idImageButtonNuevaTarea);
         botonVerLista = (ImageButton) findViewById(R.id.idImageButtonVerTareas);
+        botonVerLista.setOnClickListener(view -> {
+            Intent intent = new Intent(BaseActivity.this,ListActivity.class);
+            startActivity(intent);
+                });
         botonVolver = (ImageButton) findViewById(R.id.idImageButtonVolver);
         botonVolver.setOnClickListener(view -> {
             Intent intent = new Intent(BaseActivity.this, MainActivity.class);
