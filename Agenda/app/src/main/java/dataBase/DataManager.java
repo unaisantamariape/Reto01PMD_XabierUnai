@@ -61,4 +61,35 @@ public class DataManager extends SQLiteOpenHelper {
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sQLiteDatabase);
     }
+
+    //------------------------------ Select Nombres ------------------------------//
+    public ArrayList<String> selectNombres () {
+        String query = " Select "+ NOMBRE + " FROM " + TABLE_NAME ;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        ArrayList<String> nombres = new ArrayList<>() ;
+        int i = 0;
+        while (cursor.moveToNext()) {
+
+            nombres.add(cursor.getString(0).toString());
+            i++;
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return nombres;
+    }
+
+    //------------------------------ Insert ------------------------------//
+
+    public void insert (Tarea tarea) {
+        ContentValues values = new ContentValues();
+
+        //values.put(ID, cliente.getId());
+        values.put(NOMBRE, tarea.getNombre());
+
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        sQLiteDatabase.insert(TABLE_NAME, null, values);
+        sQLiteDatabase.close();
+    }
 }

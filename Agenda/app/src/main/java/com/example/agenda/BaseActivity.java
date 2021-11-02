@@ -2,11 +2,15 @@ package com.example.agenda;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import dataBase.DataManager;
+import dataBase.Tarea;
 
 public class BaseActivity extends AppCompatActivity{
     private ImageButton botonCrear = null;
@@ -27,6 +31,15 @@ public class BaseActivity extends AppCompatActivity{
         });
         botonVerLista = (ImageButton) findViewById(R.id.idImageButtonVerTareas);
         botonVerLista.setOnClickListener(view -> {
+
+            // Tarea tarea = new Tarea();
+            // tarea.setNombre("Fregar cocina");
+            // tarea.setRealizada(1);
+
+            DataManager dbManager = new DataManager(BaseActivity.this);
+            SQLiteDatabase db = dbManager.getWritableDatabase();
+           // dbManager.insert(tarea);
+
             Intent intent = new Intent(BaseActivity.this,ListActivity.class);
             startActivity(intent);
                 });
