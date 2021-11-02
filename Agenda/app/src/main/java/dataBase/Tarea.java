@@ -3,7 +3,8 @@ package dataBase;
 import java.util.Date;
 
 public class Tarea {
-    private int id, coste, realizada;
+    private int id, coste;
+    private boolean realizada;
     private String  nombre, descripción, prioridad;
     private Date fecha;
 
@@ -23,11 +24,11 @@ public class Tarea {
         this.coste = coste;
     }
 
-    public int getRealizada() {
+    public boolean getRealizada() {
         return realizada;
     }
 
-    public void setRealizada(int realizada) {
+    public void setRealizada(boolean realizada) {
         this.realizada = realizada;
     }
 
