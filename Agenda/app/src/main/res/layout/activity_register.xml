@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/idButtonModificarDetail"
+        android:id="@+id/idButtonRegistrar"
         android:layout_width="155dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/grey"
@@ -27,7 +27,7 @@
         tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/idButtonVolverDetail"
+        android:id="@+id/idButtonCancelarRegister"
         android:layout_width="155dp"
         android:layout_height="55dp"
         android:backgroundTint="@color/purple"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.915" />
 
     <EditText
-        android:id="@+id/idEditTextNombreDetail"
+        android:id="@+id/idEditTextNombreRegister"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
@@ -63,7 +63,7 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/IdEditTextDescripcionDetail"
+        android:id="@+id/IdEditTextDescripcionRegister"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/purple"
@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.194" />
 
     <EditText
-        android:id="@+id/IdEditTextFechaDetail"
+        android:id="@+id/IdEditTextFechaRegister"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple"
@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.37" />
 
     <EditText
-        android:id="@+id/IdEditTextCosteDetail"
+        android:id="@+id/IdEditTextCosteRegister"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
@@ -117,7 +117,7 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Spinner
-        android:id="@+id/idSpinnerPrioridadDetail"
+        android:id="@+id/idSpinnerPrioridadRegister"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
@@ -134,7 +134,7 @@
         app:layout_constraintVertical_bias="0.627" />
 
     <CheckBox
-        android:id="@+id/idCheckBoxRealizadaDetail"
+        android:id="@+id/idCheckBoxRealizadaRegister"
         android:layout_width="250dp"
         android:layout_height="57dp"
         android:buttonTint="@color/purple"

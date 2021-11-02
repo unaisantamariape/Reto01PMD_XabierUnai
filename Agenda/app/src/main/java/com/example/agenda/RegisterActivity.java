@@ -15,7 +15,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        botonCancel = (Button) findViewById(R.id.idBtnCancelarRegistro);
+        botonCancel = (Button) findViewById(R.id.idButtonCancelarRegister);
         botonCancel.setOnClickListener(view -> {
             Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
             finish();

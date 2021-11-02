@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/idButtonModificarDetail"
+        android:id="@+id/idButtonRegistrar"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/green"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.886" />
 
     <Button
-        android:id="@+id/idButtonVolverDetail"
+        android:id="@+id/idButtonCancelarRegister"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
@@ -64,13 +64,13 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/idEditTextNombreDetail"
+        android:id="@+id/idEditTextNombreRegister"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
         android:backgroundTintMode="add"
         android:ems="10"
-        android:hint="@string/texto_nombre"
+        android:hint="@string/texto_nombreTarea"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,14 +82,14 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/IdEditTextDescripcionDetail"
+        android:id="@+id/IdEditTextDescripcionRegister"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/purple"
         android:backgroundTintMode="add"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/texto_descripcion"
+        android:hint="@string/texto_descripcionTarea"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
@@ -101,13 +101,13 @@
         app:layout_constraintVertical_bias="0.194" />
 
     <EditText
-        android:id="@+id/IdEditTextFechaDetail"
+        android:id="@+id/IdEditTextFechaRegister"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple"
         android:backgroundTintMode="add"
         android:ems="10"
-        android:hint="@string/texto_fecha"
+        android:hint="@string/texto_fechaTarea"
         android:importantForAutofill="no"
         android:inputType="date"
         android:minHeight="48dp"
@@ -119,13 +119,13 @@
         app:layout_constraintVertical_bias="0.37" />
 
     <EditText
-        android:id="@+id/IdEditTextCosteDetail"
+        android:id="@+id/IdEditTextCosteRegister"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
         android:backgroundTintMode="add"
         android:ems="10"
-        android:hint="@string/texto_coste"
+        android:hint="@string/texto_costeTarea"
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
@@ -136,7 +136,7 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Spinner
-        android:id="@+id/idSpinnerPrioridadDetail"
+        android:id="@+id/idSpinnerPrioridadRegister"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/purple"
@@ -153,12 +153,12 @@
         app:layout_constraintVertical_bias="0.627" />
 
     <CheckBox
-        android:id="@+id/idCheckBoxRealizadaDetail"
+        android:id="@+id/idCheckBoxRealizadaRegister"
         android:layout_width="250dp"
         android:layout_height="57dp"
         android:buttonTint="@color/purple"
         android:buttonTintMode="src_in"
-        android:text="@string/texto_realizada"
+        android:text="@string/texto_checkBoxRealizada"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.186"
