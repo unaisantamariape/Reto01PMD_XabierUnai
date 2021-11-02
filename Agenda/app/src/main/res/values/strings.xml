@@ -11,10 +11,10 @@
     <string name="texto_switchRecordarUser">¿Recordar Usuario?</string>
     <string name="texto_botonRegistrar">Registrar</string>
     <string name="texto_botonCancelar">Cancelar</string>
-    <string name="texto_nombre">Nombre</string>
-    <string name="texto_descripcion">Descripción</string>
-    <string name="texto_fecha">Fecha</string>
-    <string name="texto_coste">Coste</string>
+    <string name="texto_nombreTarea">Nombre</string>
+    <string name="texto_descripcionTarea">Descripción</string>
+    <string name="texto_fechaTarea">Fecha</string>
+    <string name="texto_costeTarea">Coste</string>
     <string-array name="Prioridad">
         <item>Baja</item>
         <item>Media</item>
@@ -24,6 +24,7 @@
     <string name="texto_prioridadMedia">Media</string>
     <string name="texto_prioridadAlta">Alta</string>
     <string name="texto_prioridadUrgente">Urgente</string>
-    <string name="texto_realizada">Realizada</string>
-    <string name="texto_pendiente">Pendiente</string>
+    <string name="texto_checkBoxRealizada">Realizada</string>
+    <string name="texto_botonTareasRealizadas">Realizadas</string>
+    <string name="texto_botonTareasPendientes">Pendientes</string>
 </resources>

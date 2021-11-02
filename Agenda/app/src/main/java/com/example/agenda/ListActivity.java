@@ -24,7 +24,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        botonCancel = (Button) findViewById(R.id.idBtnCancelarListado);
+        botonCancel = (Button) findViewById(R.id.idBtnTareasRealizadas);
         botonCancel.setOnClickListener(view -> {
             Intent intent = new Intent(ListActivity.this, BaseActivity.class);
             finish();
