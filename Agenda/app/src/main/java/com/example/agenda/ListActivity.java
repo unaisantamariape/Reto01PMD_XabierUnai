@@ -95,10 +95,10 @@ public class ListActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 // TODO Auto-generated method stub
                                 int posicion = i;
-                                String tareaClicada = tareas.get(i).toString();
+                                String idClicado = ids.get(i).toString();
                                 tareas.remove(i);
 
-                                dbManager.deleteByName(tareaClicada);
+                                dbManager.deleteById(idClicado);
 
                                 adapter.notifyDataSetChanged();
                             }

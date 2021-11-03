@@ -115,7 +115,7 @@ public class DataManager extends SQLiteOpenHelper {
 
     //------------------------------ Select IDs Realizados ------------------------------//
     public ArrayList<Integer> selectIdsRealizadas() {
-        String query = " Select "+ ID + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=0";
+        String query = " Select "+ ID + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=1";
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sQLiteDatabase.rawQuery(query, null);
 
@@ -143,12 +143,12 @@ public class DataManager extends SQLiteOpenHelper {
     }
 
 
-    //------------------------------ Delete by Name ------------------------------//
-    public int deleteByName (String name) {
+    //------------------------------ Delete by ID ------------------------------//
+    public int deleteById (String id) {
         int ret;
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
 
-        ret = sQLiteDatabase.delete(TABLE_NAME, NOMBRE + "=?", new String[]{name});
+        ret = sQLiteDatabase.delete(TABLE_NAME, ID + "=?", new String[]{id});
         sQLiteDatabase.close();
         return ret;
     }
