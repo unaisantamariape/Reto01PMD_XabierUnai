@@ -1,5 +1,6 @@
 package com.example.agenda;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -75,13 +76,25 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
-                builder.setTitle("Titulo");
-                builder.setMessage("Mensaje");
-                builder.setPositiveButton("Aceptar", null);
+                builder.setTitle(R.string.texto_tituloAlertDialog);
+                builder.setMessage(R.string.texto_mensajeAlertDialog);
+                builder.setPositiveButton(R.string.texto_aceptarAlertDialog,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+                                int posicion = i;
+                                String tareaClicada = tareas.get(i).toString();
+                                tareas.remove(i);
+
+                                dbManager.deleteByName(tareaClicada);
+
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                return false;
+                return true;
             }
         });
         listView.setAdapter(adapter);

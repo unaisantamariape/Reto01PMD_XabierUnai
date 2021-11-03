@@ -29,4 +29,7 @@
     <string name="texto_botonTareasPendientes">Pendientes</string>
     <string name="texto_botonModificar">Modificar</string>
     <string name="texto_botonBorrar">Borrar</string>
+    <string name="texto_tituloAlertDialog">Borrar tarea</string>
+    <string name="texto_aceptarAlertDialog">Aceptar</string>
+    <string name="texto_mensajeAlertDialog">¿Seguro que desea borrar esta Tarea?</string>
 </resources>

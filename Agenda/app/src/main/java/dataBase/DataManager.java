@@ -97,7 +97,6 @@ public class DataManager extends SQLiteOpenHelper {
     }
 
     //------------------------------ Insert ------------------------------//
-
     public void insert (Tarea tarea) {
         ContentValues values = new ContentValues();
 
@@ -108,4 +107,16 @@ public class DataManager extends SQLiteOpenHelper {
         sQLiteDatabase.insert(TABLE_NAME, null, values);
         sQLiteDatabase.close();
     }
+
+
+    //------------------------------ Delete by Name ------------------------------//
+    public int deleteByName (String name) {
+        int ret;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+
+        ret = sQLiteDatabase.delete(TABLE_NAME, NOMBRE + "=?", new String[]{name});
+        sQLiteDatabase.close();
+        return ret;
+    }
+
 }
