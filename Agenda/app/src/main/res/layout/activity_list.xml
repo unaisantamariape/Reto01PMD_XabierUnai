@@ -41,7 +41,6 @@
         android:id="@+id/idBtnTareasRealizadas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple"
         android:text="@string/texto_botonTareasRealizadas"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
