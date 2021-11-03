@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#54673AB7">
 
     <Button
         android:id="@+id/idBtnTareasPendientes"
@@ -23,6 +24,13 @@
         android:id="@+id/idListViewTareas"
         android:layout_width="387dp"
         android:layout_height="582dp"
+        android:background="#FFFFFF"
+        android:choiceMode="singleChoice"
+        android:contextClickable="true"
+        android:defaultFocusHighlightEnabled="true"
+        android:divider="#54673AB7"
+        android:dividerHeight="5dp"
+        android:foregroundTint="@color/purple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
