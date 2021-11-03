@@ -14,7 +14,7 @@ public class DetailActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_detail);
 
-            botonCancel = (Button) findViewById(R.id.idBtnCancelarDetails);
+            botonCancel = (Button) findViewById(R.id.idBtnCancelarRegister);
             botonCancel.setOnClickListener(view -> {
                 Intent intent = new Intent(DetailActivity.this, ListActivity.class);
                 finish();
