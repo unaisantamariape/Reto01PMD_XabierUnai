@@ -1,6 +1,8 @@
 package com.example.agenda;
 
 import android.content.DialogInterface;
+import static com.example.agenda.R.*;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,46 +27,48 @@ public class ListActivity extends AppCompatActivity {
     private ListView listView = null;
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(layout.activity_list);
 
         DataManager dbManager = new DataManager(ListActivity.this);
 
-        botonCancel = (Button) findViewById(R.id.idBtnCancelarListado);
+        botonCancel = (Button) findViewById(id.idBtnCancelarListado);
         botonCancel.setOnClickListener(view -> {
             Intent intent = new Intent(ListActivity.this, BaseActivity.class);
             finish();
         });
 
-        botonRealizadas = (Button) findViewById(R.id.idBtnTareasRealizadas);
+        botonRealizadas = (Button) findViewById(id.idBtnTareasRealizadas);
         botonRealizadas.setOnClickListener(view -> {
-            view.setEnabled(false);
-            findViewById(R.id.idBtnTareasPendientes).setEnabled(true);
+            view.setVisibility(View.INVISIBLE);
+            findViewById(id.idBtnTareasPendientes).setVisibility(View.VISIBLE);
             tareas = dbManager.selectNombresRealizados();
-            adapter = new ArrayAdapter<String>(ListActivity.this, R.layout.activity_adapter,
-                    R.id.idTextViewTareasDB, tareas);
+            adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
+                    id.idTextViewTareasDB, tareas);
             listView.setAdapter(adapter);
         });
 
-        botonPendientes = (Button) findViewById(R.id.idBtnTareasPendientes);
+        botonPendientes = (Button) findViewById(id.idBtnTareasPendientes);
+        botonPendientes.setVisibility(View.INVISIBLE);
         botonPendientes.setOnClickListener(view -> {
-            view.setEnabled(false);
-            findViewById(R.id.idBtnTareasRealizadas).setEnabled(true);
+            view.setVisibility(View.INVISIBLE);
+            findViewById(id.idBtnTareasRealizadas).setVisibility(View.VISIBLE);
             tareas = dbManager.selectNombresPendientes();
-            adapter = new ArrayAdapter<String>(ListActivity.this, R.layout.activity_adapter,
-                    R.id.idTextViewTareasDB, tareas);
+            adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
+                    id.idTextViewTareasDB, tareas);
             listView.setAdapter(adapter);
         });
 
         //De primeras enseña las que están pendientes
         tareas = dbManager.selectNombresPendientes();
 
-        adapter = new ArrayAdapter<String>(ListActivity.this, R.layout.activity_adapter,
-                R.id.idTextViewTareasDB, tareas);
+        adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
+                id.idTextViewTareasDB, tareas);
 
-        listView = (ListView) findViewById(R.id.idListViewTareas);
+        listView = (ListView) findViewById(id.idListViewTareas);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

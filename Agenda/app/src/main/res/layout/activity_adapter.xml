@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:fontFamily="@font/belgrano"
+        android:gravity="center_horizontal|center_vertical"
         android:textAlignment="center"
         android:textColor="@color/purple"
         android:textSize="20sp"
