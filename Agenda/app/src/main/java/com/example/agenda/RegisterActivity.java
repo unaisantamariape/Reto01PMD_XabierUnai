@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.Date;
-
 import dataBase.DataManager;
 import dataBase.Tarea;
 
@@ -38,8 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         editTextCoste = (EditText) findViewById(R.id.idEditTextCosteRegister);
         spinnerPrioridad = (Spinner) findViewById(R.id.idSpinnerPrioridadRegister);
         checkBoxRealizada = (CheckBox) findViewById(R.id.idCheckBoxRealizadaRegister);
-
-
 
         botonRegistrar = (Button) findViewById(R.id.idButtonRegistrar);
         botonRegistrar.setOnClickListener(view -> {
