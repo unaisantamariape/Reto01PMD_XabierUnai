@@ -136,6 +136,12 @@ public class DataManager extends SQLiteOpenHelper {
 
         //values.put(ID, cliente.getId());
         values.put(NOMBRE, tarea.getNombre());
+        values.put(DESCRIPCION, tarea.getDescripción());
+        values.put(COSTE, tarea.getCoste());
+        values.put(PRIORIDAD, tarea.getPrioridad());
+        values.put(FECHA, tarea.getFecha());
+        values.put(PRIORIDAD, tarea.getPrioridad());
+        values.put(REALIZADA, tarea.getRealizada());
 
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         sQLiteDatabase.insert(TABLE_NAME, null, values);

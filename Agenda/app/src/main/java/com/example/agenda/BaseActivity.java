@@ -32,13 +32,8 @@ public class BaseActivity extends AppCompatActivity{
         botonVerLista = (ImageButton) findViewById(R.id.idImageButtonVerTareas);
         botonVerLista.setOnClickListener(view -> {
 
-            //Tarea tarea = new Tarea();
-            //tarea.setNombre("Levantarse de la cama");
-            //tarea.setRealizada(true);
-
             DataManager dbManager = new DataManager(BaseActivity.this);
             SQLiteDatabase db = dbManager.getWritableDatabase();
-           //dbManager.insert(tarea);
 
             Intent intent = new Intent(BaseActivity.this,ListActivity.class);
             startActivity(intent);
