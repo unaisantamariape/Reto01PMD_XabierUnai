@@ -185,4 +185,18 @@ public class DataManager extends SQLiteOpenHelper {
         return user;
     }
 
+    //------------------------------ Update ------------------------------//
+
+    public boolean update (Tarea tarea) {
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(NOMBRE, tarea.getNombre());
+        args.put(DESCRIPCION, tarea.getDescripción());
+        args.put(FECHA, tarea.getFecha());
+        args.put(COSTE, tarea.getCoste());
+        args.put(PRIORIDAD, tarea.getPrioridad());
+        args.put(REALIZADA, tarea.getRealizada());
+        String whereClause = ID + "=" + tarea.getId();
+        return sQLiteDatabase.update(TABLE_NAME, args, whereClause, null) > 0;
+    }
 }
