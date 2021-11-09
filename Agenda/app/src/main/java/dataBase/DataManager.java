@@ -21,6 +21,22 @@ public class DataManager extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
 
     // Table Name
+    public static final String TABLE_NAME_USER = "User";
+
+    // Table columns
+    private static final String ID_USER = "id";
+    private static final String NOMBRE_USER = "nombre";
+    private static final String PASS_USER = "pass";
+
+    // Creating table query
+    private static final String CREATE_TABLE_USER = "create table " + TABLE_NAME_USER + "(" +
+            ID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            NOMBRE_USER + " TEXT NOT NULL, " +
+            PASS_USER + " TEXT "+
+            ");";
+
+
+    // Table Name
     public static final String TABLE_NAME = "Tarea";
 
     // Table columns
@@ -31,6 +47,7 @@ public class DataManager extends SQLiteOpenHelper {
     private static final String PRIORIDAD = "prioridad";
     private static final String FECHA = "fecha";
     private static final String REALIZADA = "realizada";
+    private static final String USER_ID = "id_user";
 
 
     // Creating table query
@@ -41,7 +58,9 @@ public class DataManager extends SQLiteOpenHelper {
             COSTE + " INTEGER, " +
             PRIORIDAD + " TEXT, " +
             FECHA + " TEXT, " +
-            REALIZADA + " INTEGER " +
+            REALIZADA + " INTEGER, " +
+            USER_ID + " INTEGER, " +
+            "FOREIGN KEY(" + USER_ID + ") REFERENCES " + TABLE_NAME_USER + "(" + ID_USER + ")"+
             ");";
 
     private final Context context;
@@ -54,6 +73,14 @@ public class DataManager extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sQLiteDatabase) {
         sQLiteDatabase.execSQL(CREATE_TABLE);
+        sQLiteDatabase.execSQL(CREATE_TABLE_USER);
+
+        ContentValues values = new ContentValues();
+
+        values.put(NOMBRE_USER, "admin");
+        values.put(PASS_USER, "1234");
+
+        sQLiteDatabase.insert(TABLE_NAME_USER, null, values);
     }
 
     @Override
@@ -185,4 +212,22 @@ public class DataManager extends SQLiteOpenHelper {
         return user;
     }
 
+    //------------------------------ selectAll ------------------------------//
+
+    public List<User> selectAllUsers () {
+        List<User> ret = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME_USER;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+        User user;
+        while (cursor.moveToNext()) {
+            user = new User();
+            user.setId(cursor.getInt(0));
+            user.setNombre(cursor.getString(1));
+            user.setPass(cursor.getString(2));
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return ret;
+    }
 }
