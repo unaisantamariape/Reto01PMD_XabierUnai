@@ -79,6 +79,23 @@ public class DataManager extends SQLiteOpenHelper {
         return nombres;
     }
 
+    //------------------------------ Select IDs Pendientes ------------------------------//
+    public ArrayList<Integer> selectIdsPendientes() {
+        String query = " Select "+ ID + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=0";
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        ArrayList<Integer> nombres = new ArrayList<>() ;
+        int i = 0;
+        while (cursor.moveToNext()) {
+            nombres.add(cursor.getInt(0));
+            i++;
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return nombres;
+    }
+
     //------------------------------ Select Nombres Realizados ------------------------------//
     public ArrayList<String> selectNombresRealizados() {
         String query = " Select "+ NOMBRE + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=1";
@@ -89,6 +106,23 @@ public class DataManager extends SQLiteOpenHelper {
         int i = 0;
         while (cursor.moveToNext()) {
             nombres.add(cursor.getString(0).toString());
+            i++;
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return nombres;
+    }
+
+    //------------------------------ Select IDs Realizados ------------------------------//
+    public ArrayList<Integer> selectIdsRealizadas() {
+        String query = " Select "+ ID + " FROM " + TABLE_NAME + " WHERE "+ REALIZADA+"=1";
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        ArrayList<Integer> nombres = new ArrayList<>() ;
+        int i = 0;
+        while (cursor.moveToNext()) {
+            nombres.add(cursor.getInt(0));
             i++;
         }
         cursor.close();
@@ -109,14 +143,40 @@ public class DataManager extends SQLiteOpenHelper {
     }
 
 
-    //------------------------------ Delete by Name ------------------------------//
-    public int deleteByName (String name) {
+    //------------------------------ Delete by ID ------------------------------//
+    public int deleteById (String id) {
         int ret;
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
 
-        ret = sQLiteDatabase.delete(TABLE_NAME, NOMBRE + "=?", new String[]{name});
+        ret = sQLiteDatabase.delete(TABLE_NAME, ID + "=?", new String[]{id});
         sQLiteDatabase.close();
         return ret;
+    }
+
+    //------------------------------ Select by Id ------------------------------//
+
+    public Tarea selectById (int id) {
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + ID +
+                " = " + "'" + id + "'";
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+
+        Tarea user = new Tarea ();
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            user.setId(cursor.getInt(0));
+            user.setNombre(cursor.getString(1));
+            user.setDescripción(cursor.getString(2));
+            user.setCoste(cursor.getInt(3));
+            user.setPrioridad(cursor.getString(4));
+            user.setFecha(cursor.getString(5));
+            user.setRealizada(cursor.getInt(6));
+            cursor.close();
+        } else {
+            user = null;
+        }
+        sQLiteDatabase.close();
+        return user;
     }
 
 }

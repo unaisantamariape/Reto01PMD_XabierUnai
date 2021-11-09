@@ -61,9 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         editTextNombre = (EditText) findViewById(R.id.idEditTextNombreRegister);
-        editTextDescripcion = (EditText) findViewById(R.id.IdEditTextDescripcionRegister);
-        editTextFecha = (EditText) findViewById(R.id.IdEditTextFechaRegister);
-        editTextCoste = (EditText) findViewById(R.id.IdEditTextCosteRegister);
+        editTextDescripcion = (EditText) findViewById(R.id.idEditTextDescripcionRegister);
+        editTextFecha = (EditText) findViewById(R.id.idEditTextFechaRegister);
+        editTextCoste = (EditText) findViewById(R.id.idEditTextCosteRegister);
         spinnerPrioridad = (Spinner) findViewById(R.id.idSpinnerPrioridadRegister);
         checkBoxRealizada = (CheckBox) findViewById(R.id.idCheckBoxRealizadaRegister);
 

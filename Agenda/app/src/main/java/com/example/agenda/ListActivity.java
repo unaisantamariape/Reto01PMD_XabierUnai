@@ -23,6 +23,7 @@ public class ListActivity extends AppCompatActivity {
     private Button botonRealizadas = null;
     private Button botonPendientes = null;
     private ArrayList<String> tareas = null;
+    private ArrayList<Integer> ids = null;
     ArrayAdapter<String> adapter = null;
     private ListView listView = null;
 
@@ -50,6 +51,7 @@ public class ListActivity extends AppCompatActivity {
             //findViewById(id.idBtnTareasPendientes).setBackgroundColor(color.purple);
             findViewById(id.idBtnTareasPendientes).setEnabled(true);
             tareas = dbManager.selectNombresRealizados();
+            ids = dbManager.selectIdsRealizadas();
             adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
                     id.idTextViewTareasDB, tareas);
             listView.setAdapter(adapter);
@@ -63,6 +65,7 @@ public class ListActivity extends AppCompatActivity {
             //findViewById(id.idBtnTareasRealizadas).setBackgroundColor(color.purple);
             findViewById(id.idBtnTareasRealizadas).setEnabled(true);
             tareas = dbManager.selectNombresPendientes();
+            ids = dbManager.selectIdsPendientes();
             adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
                     id.idTextViewTareasDB, tareas);
             listView.setAdapter(adapter);
@@ -70,6 +73,7 @@ public class ListActivity extends AppCompatActivity {
 
         //De primeras enseña las que están pendientes
         tareas = dbManager.selectNombresPendientes();
+        ids = dbManager.selectIdsPendientes();
 
         adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
                 id.idTextViewTareasDB, tareas);
@@ -78,7 +82,11 @@ public class ListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int posicion = i;
+                String tareaClicada = ids.get(i).toString();
+
                 Intent intent = new Intent(ListActivity.this,DetailActivity.class);
+                intent.putExtra("ID",tareaClicada);
                 startActivity(intent);
             }
         });
@@ -93,10 +101,10 @@ public class ListActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 // TODO Auto-generated method stub
                                 int posicion = i;
-                                String tareaClicada = tareas.get(i).toString();
+                                String idClicado = ids.get(i).toString();
                                 tareas.remove(i);
 
-                                dbManager.deleteByName(tareaClicada);
+                                dbManager.deleteById(idClicado);
 
                                 adapter.notifyDataSetChanged();
                             }
