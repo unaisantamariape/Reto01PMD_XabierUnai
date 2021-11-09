@@ -39,18 +39,56 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerPrioridad = (Spinner) findViewById(R.id.idSpinnerPrioridadRegister);
         checkBoxRealizada = (CheckBox) findViewById(R.id.idCheckBoxRealizadaRegister);
 
+
+
         botonRegistrar = (Button) findViewById(R.id.idButtonRegistrar);
         botonRegistrar.setOnClickListener(view -> {
-            String nombreTarea = editTextNombre.getText().toString();
-            String descripcionTarea = editTextDescripcion.getText().toString();
-            String fechaTarea =editTextFecha.getText().toString();
-            int costeTarea = Integer.parseInt(editTextCoste.getText().toString());
+
+            String nombreTarea = "";
+            String descripcionTarea = "";
+            String fechaTarea = "";
+            int costeTarea = 0;
+            boolean faltanDatos = true;
+
+            if(editTextNombre.getText().toString().equals("")){
+                Toast.makeText(this,R.string.texto_toastIntroduceDatos,Toast.LENGTH_SHORT).show();
+                faltanDatos = false;
+            }else{
+               nombreTarea = editTextNombre.getText().toString();
+                faltanDatos = true;
+            }
+
+            if(editTextDescripcion.getText().toString().equals("")){
+                Toast.makeText(this,R.string.texto_toastIntroduceDatos,Toast.LENGTH_SHORT).show();
+                faltanDatos = false;
+            }else{
+                descripcionTarea = editTextDescripcion.getText().toString();
+                faltanDatos = true;
+            }
+
+            if(editTextFecha.getText().toString().equals("")){
+                Toast.makeText(this,R.string.texto_toastIntroduceDatos,Toast.LENGTH_SHORT).show();
+                faltanDatos = false;
+            }else{
+                fechaTarea =editTextFecha.getText().toString();
+                faltanDatos = true;
+            }
+
+            if(editTextCoste.getText().toString().equals("")){
+                Toast.makeText(this,R.string.texto_toastIntroduceDatos,Toast.LENGTH_SHORT).show();
+                faltanDatos = false;
+            }else{
+                costeTarea = Integer.parseInt(editTextCoste.getText().toString());
+                faltanDatos = true;
+            }
+
             String prioridadTarea = spinnerPrioridad.getSelectedItem().toString();
             int realizadaTarea = 0;
             if (checkBoxRealizada.isChecked()){
-                realizadaTarea = 1;
-            }
+               realizadaTarea = 1;
+           }
 
+            if (faltanDatos) {
                 Tarea tarea = new Tarea();
                 tarea.setNombre(nombreTarea);
                 tarea.setDescripción(descripcionTarea);
@@ -62,7 +100,12 @@ public class RegisterActivity extends AppCompatActivity {
                 DataManager dbManager = new DataManager(RegisterActivity.this);
                 SQLiteDatabase db = dbManager.getWritableDatabase();
                 dbManager.insert(tarea);
-                
+                Toast.makeText(this,R.string.texto_toastCreadoCorrectamente,Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
+                finish();
+            }
+
         });
 
         botonCancel = (Button) findViewById(R.id.idBtnCancelarRegister);

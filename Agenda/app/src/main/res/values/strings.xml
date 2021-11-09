@@ -34,4 +34,6 @@
     <string name="texto_aceptarAlertDialog">Aceptar</string>
     <string name="texto_mensajeAlertDialog">¿Seguro que desea borrar esta Tarea?</string>
     <string name="texto_toastIntroduceDatos">Debe introducir los datos de la nueva tarea</string>
+    <string name="texto_toastCreadoCorrectamente">Se ha creado la nueva tarea</string>
+
 </resources>
