@@ -1,6 +1,9 @@
 package com.example.agenda;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -59,10 +62,18 @@ public class BaseActivity extends AppCompatActivity{
 
         switch(item.getItemId()){
             case R.id.idCambiarPass:
-                Toast.makeText(this, "You clicked.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "You clicked.", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alerDialog = new AlertDialog.Builder(this);
+                alerDialog.setMessage("Escribe tu nueva contraseña");
+                final EditText editTextName = new EditText(this);
+                alerDialog.setView(editTextName);
+                DialogInterface.OnClickListener cambiarPass = null;
+                alerDialog.setPositiveButton(android.R.string.ok,cambiarPass);
+                alerDialog.show();
                 break;
 
         }
         return true;
     }
+
 }
