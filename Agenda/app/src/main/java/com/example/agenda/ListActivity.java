@@ -43,13 +43,11 @@ public class ListActivity extends AppCompatActivity {
         });
 
         botonRealizadas = (Button) findViewById(id.idBtnTareasRealizadas);
-        botonRealizadas.setVisibility(View.VISIBLE);
-        botonRealizadas.setEnabled(true);
         botonRealizadas.setOnClickListener(view -> {
-            view.setEnabled(false);
             view.setBackgroundColor(color.grey);
-            //findViewById(id.idBtnTareasPendientes).setBackgroundColor(color.purple);
-            findViewById(id.idBtnTareasPendientes).setEnabled(true);
+            view.setClickable(false);
+            findViewById(id.idBtnTareasPendientes).setBackgroundColor(color.purple);
+            findViewById(id.idBtnTareasPendientes).setClickable(true);
             tareas = dbManager.selectNombresRealizados();
             ids = dbManager.selectIdsRealizadas();
             adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
@@ -58,12 +56,14 @@ public class ListActivity extends AppCompatActivity {
         });
 
         botonPendientes = (Button) findViewById(id.idBtnTareasPendientes);
-        botonPendientes.setVisibility(View.VISIBLE);
+        botonPendientes.setBackgroundColor(color.grey);
+        botonPendientes.setClickable(false);
+
         botonPendientes.setOnClickListener(view -> {
-            view.setEnabled(false);
-            //view.setBackgroundColor(color.grey);
-            //findViewById(id.idBtnTareasRealizadas).setBackgroundColor(color.purple);
-            findViewById(id.idBtnTareasRealizadas).setEnabled(true);
+            view.setBackgroundColor(color.grey);
+            view.setClickable(false);
+            findViewById(id.idBtnTareasRealizadas).setBackgroundColor(color.purple);
+            findViewById(id.idBtnTareasRealizadas).setClickable(true);
             tareas = dbManager.selectNombresPendientes();
             ids = dbManager.selectIdsPendientes();
             adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
@@ -94,9 +94,9 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
-                builder.setTitle(R.string.texto_tituloAlertDialog);
-                builder.setMessage(R.string.texto_mensajeAlertDialog);
-                builder.setPositiveButton(R.string.texto_aceptarAlertDialog,
+                builder.setTitle(string.texto_tituloAlertDialog);
+                builder.setMessage(string.texto_mensajeAlertDialog);
+                builder.setPositiveButton(string.texto_aceptarAlertDialog,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // TODO Auto-generated method stub

@@ -3,6 +3,7 @@ package com.example.agenda;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -49,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
                      realizadaTarea = 0;
                 }
 
-
+                
 
                 Tarea tarea = new Tarea();
                 tarea.setId(Integer.parseInt(idTareaSelecionada));
@@ -70,7 +71,7 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            botonCancel = (Button) findViewById(R.id.idBtnCancelarRegister);
+            botonCancel =  findViewById(R.id.idBtnCancelarRegister);
 
             botonCancel.setOnClickListener(view -> {
                 Intent intent = new Intent(DetailActivity.this, ListActivity.class);
@@ -81,25 +82,25 @@ public class DetailActivity extends AppCompatActivity {
 
             tareaSeleccionada = dbManager.selectById(Integer.parseInt(idTareaSelecionada));
 
-            editTextNombre = (EditText)findViewById(R.id.idEditTextNombreRegister);
+            editTextNombre = findViewById(R.id.idEditTextNombreRegister);
             editTextNombre.setText(tareaSeleccionada.getNombre());
 
-            editTextDescripcion = (EditText)findViewById(R.id.idEditTextDescripcionRegister);
+            editTextDescripcion = findViewById(R.id.idEditTextDescripcionRegister);
             editTextDescripcion.setText(tareaSeleccionada.getDescripción());
 
-            editTextFecha = (EditText) findViewById(R.id.idEditTextFechaRegister);
+            editTextFecha = findViewById(R.id.idEditTextFechaRegister);
             editTextFecha.setText(tareaSeleccionada.getFecha());
 
-            editTextCoste = (EditText) findViewById(R.id.idEditTextCosteRegister);
+            editTextCoste = findViewById(R.id.idEditTextCosteRegister);
             editTextCoste.setText(tareaSeleccionada.getCoste()+"");
 
-            spinnerPrioridad = (Spinner) findViewById(R.id.idSpinnerPrioridadRegister);
-            //spinnerPrioridad.setSelection(1);
+            spinnerPrioridad = findViewById(R.id.idSpinnerPrioridadRegister);
+            String seleccion = tareaSeleccionada.getPrioridad();
+            spinnerPrioridad.setSelection(((ArrayAdapter)spinnerPrioridad.getAdapter()).getPosition(seleccion));
 
-            checkBoxRealizado = (CheckBox) findViewById(R.id.idCheckBoxRealizadaRegister);
-            //checkBoxRealizado.isChecked();
-
-
-
+            checkBoxRealizado = findViewById(R.id.idCheckBoxRealizadaRegister);
+            if (tareaSeleccionada.getRealizada() == 1){
+                checkBoxRealizado.setChecked(true);
+            }
         }
 }
