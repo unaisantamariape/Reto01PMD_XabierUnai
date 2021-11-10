@@ -16,10 +16,7 @@ import dataBase.User;
 
 public class MainActivity extends AppCompatActivity {
     private Button botonLogin = null;
-
-
-
-
+    static User usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(dbManager.selectUserForLogin(userIntroducido,passIntroducido)){
                 //Login correcto
+                usuario = dbManager.selectByName(userIntroducido);
                 Intent intent = new Intent(MainActivity.this,BaseActivity.class);
                 startActivity(intent);
             }else{
