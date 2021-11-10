@@ -60,15 +60,22 @@ public class BaseActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch(item.getItemId()) {
             case R.id.idCambiarPass:
-                //Toast.makeText(this, "You clicked.", Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder alerDialog = new AlertDialog.Builder(this);
                 alerDialog.setMessage("Escribe tu nueva contraseña");
                 final EditText editTextName = new EditText(this);
                 alerDialog.setView(editTextName);
-                DialogInterface.OnClickListener cambiarPass = null;
-                alerDialog.setPositiveButton(android.R.string.ok,cambiarPass);
+
+                alerDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                String passNueva = editTextName.getText().toString();
+                                if(passNueva.equals(" ")){
+
+                                }
+                            }
+                        }
+                    );
                 alerDialog.show();
                 break;
 

@@ -246,4 +246,32 @@ public class DataManager extends SQLiteOpenHelper {
             String whereClause = ID + "=" + tarea.getId();
             return sQLiteDatabase.update(TABLE_NAME, args, whereClause, null) > 0;
         }
+
+    //------------------------------ ifExist / ifEmpty ------------------------------//
+
+    public boolean selectUserForLogin(String user, String password) {
+        boolean ret = false;
+        Cursor cursor = null;
+        try {
+            SQLiteDatabase sQLiteDatabase = this.getReadableDatabase();
+            String query = "select * from "+ TABLE_NAME_USER +" where " + NOMBRE_USER + " = " +
+                    "'" + user + "'" + " AND " + PASS_USER + "=" + "'" + password + "';";
+            cursor = sQLiteDatabase.rawQuery( query, null );
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
+                    ret = true;
+                }
+            }
+        } catch (Exception e) {
+            // Nothing to do here...
+        } finally{
+            try{
+                assert cursor != null;
+                cursor.close();
+            } catch (NullPointerException e) {
+                // Nothing to do here...
+            }
+        }
+        return ret;
+    }
 }
