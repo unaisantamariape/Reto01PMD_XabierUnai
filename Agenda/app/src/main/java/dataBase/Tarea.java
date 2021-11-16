@@ -1,7 +1,7 @@
 package dataBase;
 
 public class Tarea {
-    private int id, coste, realizada;
+    private int id, idUser, coste, realizada;
     private String  nombre, descripción, prioridad,fecha;
 
     public int getId() {
@@ -10,6 +10,14 @@ public class Tarea {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getCoste() {
