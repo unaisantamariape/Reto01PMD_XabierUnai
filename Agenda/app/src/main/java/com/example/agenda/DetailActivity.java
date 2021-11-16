@@ -1,5 +1,6 @@
 package com.example.agenda;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import dataBase.DataManager;
@@ -18,6 +20,7 @@ import dataBase.Tarea;
 public class DetailActivity extends AppCompatActivity {
     private Button botonCancel = null;
     private Button botonModificar = null;
+    private Button botonBorrar = null;
     private EditText editTextNombre = null;
     private EditText editTextDescripcion = null;
     private EditText editTextFecha = null;
@@ -33,10 +36,12 @@ public class DetailActivity extends AppCompatActivity {
             setContentView(R.layout.activity_detail);
 
 
+            DataManager dbManager = new DataManager(DetailActivity.this);
+
             Bundle extras = getIntent().getExtras();
             idTareaSelecionada = extras.getString("ID");
 
-            botonModificar = (Button) findViewById(R.id.idButtonModificar);
+            botonModificar = (Button) findViewById(R.id.idButtonModificarDetail);
             botonModificar.setOnClickListener(view -> {
                 String nombreTarea = editTextNombre.getText().toString();
                 String descripcionTarea = editTextDescripcion.getText().toString();
@@ -61,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
                 tarea.setPrioridad(prioridadTarea);
                 tarea.setRealizada(realizadaTarea);
 
-                DataManager dbManager = new DataManager(DetailActivity.this);
+
                 SQLiteDatabase db = dbManager.getWritableDatabase();
                 dbManager.update(tarea);
 
@@ -71,14 +76,39 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            botonCancel =  findViewById(R.id.idBtnCancelarRegister);
+            botonCancel =  findViewById(R.id.idButtonVolverDetail);
 
             botonCancel.setOnClickListener(view -> {
                 Intent intent = new Intent(DetailActivity.this, ListActivity.class);
                 finish();
             });
 
-            DataManager dbManager = new DataManager(DetailActivity.this);
+            botonBorrar =  findViewById(R.id.idButtonBorrarDetail);
+
+            botonBorrar.setOnClickListener(view -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+                builder.setTitle(R.string.texto_tituloAlertDialog);
+                builder.setMessage(R.string.texto_mensajeAlertDialog);
+                builder.setPositiveButton(R.string.texto_aceptarAlertDialog,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+
+                                dbManager.deleteById(idTareaSelecionada);
+
+
+
+                                Intent intent = new Intent(DetailActivity.this,BaseActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+            });
+
+
 
             tareaSeleccionada = dbManager.selectById(Integer.parseInt(idTareaSelecionada));
 
