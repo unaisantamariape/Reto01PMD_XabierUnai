@@ -31,6 +31,9 @@ public class BaseActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
+        DataManager dbManager = new DataManager(BaseActivity.this);
+        SQLiteDatabase db = dbManager.getWritableDatabase();
+
         botonCrear = (ImageButton) findViewById(R.id.idImageButtonNuevaTarea);
         botonCrear.setOnClickListener(view -> {
             Intent intent = new Intent(BaseActivity.this,RegisterActivity.class);
@@ -38,10 +41,6 @@ public class BaseActivity extends AppCompatActivity{
         });
         botonVerLista = (ImageButton) findViewById(R.id.idImageButtonVerTareas);
         botonVerLista.setOnClickListener(view -> {
-
-            DataManager dbManager = new DataManager(BaseActivity.this);
-            SQLiteDatabase db = dbManager.getWritableDatabase();
-
             Intent intent = new Intent(BaseActivity.this,ListActivity.class);
             startActivity(intent);
                 });
@@ -61,34 +60,28 @@ public class BaseActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()) {
-            case R.id.idCambiarPass:
+       if(item.getItemId() == R.id.idCambiarPass) {
                 AlertDialog.Builder alerDialog = new AlertDialog.Builder(this);
                 alerDialog.setMessage("Escribe tu nueva contraseña");
                 final EditText editTextName = new EditText(this);
                 alerDialog.setView(editTextName);
 
                 alerDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                String passNueva = editTextName.getText().toString();
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String passNueva = editTextName.getText().toString();
+                        User usuarioEditado = MainActivity.usuario;
+                        usuarioEditado.setPass(passNueva);
 
-                                DataManager dbManager = new DataManager(BaseActivity.this);
-
-                                User usuarioCambiado = MainActivity.usuario;
-                                usuarioCambiado.setId(MainActivity.usuario.getId());
-                                usuarioCambiado.setPass(passNueva);
-                                dbManager.updatePassUser(usuarioCambiado);
-
-                            }
+                        DataManager dbManager = new DataManager(BaseActivity.this);
+                        dbManager.updatePassUser(usuarioEditado);
+                        Toast.makeText(BaseActivity.this,"Contraseña cambiada",Toast.LENGTH_SHORT).show();
                         }
+                    }
                     );
                 alerDialog.show();
-                break;
-
         }
         return true;
     }
-
 
 
 
