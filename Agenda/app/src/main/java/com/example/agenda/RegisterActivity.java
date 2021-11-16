@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         });
 
-        botonCancel = (Button) findViewById(R.id.idBtnCancelarRegister);
+        botonCancel = (Button) findViewById(R.id.idButtonCancelarRegister);
         botonCancel.setOnClickListener(view -> {
             Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
             finish();
