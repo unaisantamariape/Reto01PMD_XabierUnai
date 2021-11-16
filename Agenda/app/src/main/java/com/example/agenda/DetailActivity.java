@@ -65,7 +65,7 @@ public class DetailActivity extends AppCompatActivity {
                 tarea.setCoste(costeTarea);
                 tarea.setPrioridad(prioridadTarea);
                 tarea.setRealizada(realizadaTarea);
-
+                tarea.setIdUser(MainActivity.usuario.getId());
 
                 SQLiteDatabase db = dbManager.getWritableDatabase();
                 dbManager.update(tarea);

@@ -169,6 +169,7 @@ public class DataManager extends SQLiteOpenHelper {
         values.put(FECHA, tarea.getFecha());
         values.put(PRIORIDAD, tarea.getPrioridad());
         values.put(REALIZADA, tarea.getRealizada());
+        values.put(USER_ID, tarea.getIdUser());
 
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         sQLiteDatabase.insert(TABLE_NAME, null, values);
@@ -243,6 +244,7 @@ public class DataManager extends SQLiteOpenHelper {
             args.put(COSTE, tarea.getCoste());
             args.put(PRIORIDAD, tarea.getPrioridad());
             args.put(REALIZADA, tarea.getRealizada());
+            args.put(USER_ID,tarea.getIdUser());
             String whereClause = ID + "=" + tarea.getId();
             return sQLiteDatabase.update(TABLE_NAME, args, whereClause, null) > 0;
         }

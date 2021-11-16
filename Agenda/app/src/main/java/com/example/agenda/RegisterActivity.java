@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                 tarea.setCoste(costeTarea);
                 tarea.setPrioridad(prioridadTarea);
                 tarea.setRealizada(realizadaTarea);
+                tarea.setIdUser(MainActivity.usuario.getId());
 
                 DataManager dbManager = new DataManager(RegisterActivity.this);
                 SQLiteDatabase db = dbManager.getWritableDatabase();
