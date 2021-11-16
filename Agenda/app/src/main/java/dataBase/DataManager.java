@@ -280,30 +280,33 @@ public class DataManager extends SQLiteOpenHelper {
     public boolean updatePassUser (User usuario) {
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         ContentValues args = new ContentValues();
+        args.put(ID_USER, usuario.getId());
         args.put(NOMBRE_USER, usuario.getNombre());
-        args.put(PASS_USER, usuario.getNombre());
+        args.put(PASS_USER, usuario.getPass());
         String whereClause = ID + "=" + usuario.getId();
-        return sQLiteDatabase.update(TABLE_NAME, args, whereClause, null) > 0;
+        return sQLiteDatabase.update(TABLE_NAME_USER, args, whereClause, null) > 0;
     }
 
     //------------------------------ Select ID by Name ------------------------------//
 
     public User selectByName (String name) {
-        User ret = new User();
-        String query = "Select * FROM " + TABLE_NAME + " WHERE " + NOMBRE_USER +
+        String query = "Select * FROM " + TABLE_NAME_USER + " WHERE " + NOMBRE_USER +
                 " = " + "'" + name + "'";
         SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
         Cursor cursor = sQLiteDatabase.rawQuery(query, null);
-        User user;
-        while (cursor.moveToNext()) {
-            user = new User();
+
+        User user = new User ();
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
             user.setId(cursor.getInt(0));
             user.setNombre(cursor.getString(1));
             user.setPass(cursor.getString(2));
+            cursor.close();
+        } else {
+            user = null;
         }
-        cursor.close();
         sQLiteDatabase.close();
-        return ret;
+        return user;
     }
 
 }
