@@ -62,7 +62,7 @@ public class BaseActivity extends AppCompatActivity{
 
        if(item.getItemId() == R.id.idCambiarPass) {
                 AlertDialog.Builder alerDialog = new AlertDialog.Builder(this);
-                alerDialog.setMessage("Escribe tu nueva contraseña");
+                alerDialog.setMessage(R.string.texto_escribeNuevaPass);
                 final EditText editTextName = new EditText(this);
                 alerDialog.setView(editTextName);
 
@@ -74,7 +74,7 @@ public class BaseActivity extends AppCompatActivity{
 
                         DataManager dbManager = new DataManager(BaseActivity.this);
                         dbManager.updatePassUser(usuarioEditado);
-                        Toast.makeText(BaseActivity.this,"Contraseña cambiada",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BaseActivity.this,R.string.texto_passCambiada,Toast.LENGTH_SHORT).show();
                         }
                     }
                     );

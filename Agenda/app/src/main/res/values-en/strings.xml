@@ -10,6 +10,8 @@
     <string name="texto_botonVerLista">See tasks</string>
     <string name="texto_switchRecordarUser">Remember username?</string>
     <string name="texto_cambiarPass">Change password</string>
+    <string name="texto_escribeNuevaPass">Enter your new password</string>
+    <string name="texto_passCambiada">Password changed</string>
     <string name="texto_botonRegistrar">Register</string>
     <string name="texto_botonCancelar">Cancel</string>
     <string name="texto_nombreTarea">Name</string>
