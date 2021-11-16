@@ -44,10 +44,11 @@ public class ListActivity extends AppCompatActivity {
 
         botonRealizadas = (Button) findViewById(id.idBtnTareasRealizadas);
         botonRealizadas.setOnClickListener(view -> {
-            view.setBackgroundColor(color.grey);
-            view.setClickable(false);
+            botonRealizadas.setEnabled(false);
+            botonRealizadas.setBackgroundColor(color.grey);
+
             findViewById(id.idBtnTareasPendientes).setBackgroundColor(color.purple);
-            findViewById(id.idBtnTareasPendientes).setClickable(true);
+            findViewById(id.idBtnTareasPendientes).setEnabled(true);
             tareas = dbManager.selectNombresRealizados();
             ids = dbManager.selectIdsRealizadas();
             adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
@@ -56,14 +57,13 @@ public class ListActivity extends AppCompatActivity {
         });
 
         botonPendientes = (Button) findViewById(id.idBtnTareasPendientes);
-        botonPendientes.setBackgroundColor(color.grey);
-        botonPendientes.setClickable(false);
-
+        botonPendientes.setEnabled(false);
         botonPendientes.setOnClickListener(view -> {
-            view.setBackgroundColor(color.grey);
-            view.setClickable(false);
+            botonPendientes.setEnabled(false);
+            botonPendientes.setBackgroundColor(color.grey);
+
             findViewById(id.idBtnTareasRealizadas).setBackgroundColor(color.purple);
-            findViewById(id.idBtnTareasRealizadas).setClickable(true);
+            findViewById(id.idBtnTareasRealizadas).setEnabled(true);
             tareas = dbManager.selectNombresPendientes();
             ids = dbManager.selectIdsPendientes();
             adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,

@@ -22,6 +22,7 @@
         <item>Alta</item>
         <item>Urgente</item>
     </string-array>
+    <string name="texto_prioridadBaja">Baja</string>
     <string name="texto_prioridadMedia">Media</string>
     <string name="texto_prioridadAlta">Alta</string>
     <string name="texto_prioridadUrgente">Urgente</string>
