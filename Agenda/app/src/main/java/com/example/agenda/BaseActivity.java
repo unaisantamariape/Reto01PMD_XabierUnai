@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import dataBase.DataManager;
 import dataBase.Tarea;
+import dataBase.User;
 
 public class BaseActivity extends AppCompatActivity{
     private ImageButton botonCrear = null;
@@ -70,9 +71,14 @@ public class BaseActivity extends AppCompatActivity{
                 alerDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 String passNueva = editTextName.getText().toString();
-                                if(passNueva.equals(" ")){
 
-                                }
+                                DataManager dbManager = new DataManager(BaseActivity.this);
+
+                                User usuarioCambiado = MainActivity.usuario;
+                                usuarioCambiado.setId(MainActivity.usuario.getId());
+                                usuarioCambiado.setPass(passNueva);
+                                dbManager.updatePassUser(usuarioCambiado);
+
                             }
                         }
                     );
@@ -82,5 +88,8 @@ public class BaseActivity extends AppCompatActivity{
         }
         return true;
     }
+
+
+
 
 }

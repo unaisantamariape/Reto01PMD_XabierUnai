@@ -31,7 +31,7 @@ public class DataManager extends SQLiteOpenHelper {
     // Creating table query
     private static final String CREATE_TABLE_USER = "create table " + TABLE_NAME_USER + "(" +
             ID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            NOMBRE_USER + " TEXT NOT NULL, " +
+            NOMBRE_USER + " TEXT UNIQUE NOT NULL, " +
             PASS_USER + " TEXT "+
             ");";
 
@@ -274,4 +274,36 @@ public class DataManager extends SQLiteOpenHelper {
         }
         return ret;
     }
+
+    //------------------------------ Update Pass------------------------------//
+
+    public boolean updatePassUser (User usuario) {
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(NOMBRE_USER, usuario.getNombre());
+        args.put(PASS_USER, usuario.getNombre());
+        String whereClause = ID + "=" + usuario.getId();
+        return sQLiteDatabase.update(TABLE_NAME, args, whereClause, null) > 0;
+    }
+
+    //------------------------------ Select ID by Name ------------------------------//
+
+    public User selectByName (String name) {
+        User ret = new User();
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + NOMBRE_USER +
+                " = " + "'" + name + "'";
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+        User user;
+        while (cursor.moveToNext()) {
+            user = new User();
+            user.setId(cursor.getInt(0));
+            user.setNombre(cursor.getString(1));
+            user.setPass(cursor.getString(2));
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return ret;
+    }
+
 }
