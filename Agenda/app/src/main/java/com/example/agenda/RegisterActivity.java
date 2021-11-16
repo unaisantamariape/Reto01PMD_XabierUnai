@@ -1,7 +1,5 @@
 package com.example.agenda;
 
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,8 +14,6 @@ import dataBase.Tarea;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Button botonRegistrar = null;
-    private Button botonCancel = null;
     private EditText editTextNombre = null;
     private EditText editTextDescripcion = null;
     private EditText editTextFecha = null;
@@ -30,14 +26,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editTextNombre = (EditText) findViewById(R.id.idEditTextNombreRegister);
-        editTextDescripcion = (EditText) findViewById(R.id.idEditTextDescripcionRegister);
-        editTextFecha = (EditText) findViewById(R.id.idEditTextFechaRegister);
-        editTextCoste = (EditText) findViewById(R.id.idEditTextCosteRegister);
-        spinnerPrioridad = (Spinner) findViewById(R.id.idSpinnerPrioridadRegister);
-        checkBoxRealizada = (CheckBox) findViewById(R.id.idCheckBoxRealizadaRegister);
+        editTextNombre = findViewById(R.id.idEditTextNombreRegister);
+        editTextDescripcion = findViewById(R.id.idEditTextDescripcionRegister);
+        editTextFecha = findViewById(R.id.idEditTextFechaRegister);
+        editTextCoste = findViewById(R.id.idEditTextCosteRegister);
+        spinnerPrioridad = findViewById(R.id.idSpinnerPrioridadRegister);
+        checkBoxRealizada = findViewById(R.id.idCheckBoxRealizadaRegister);
 
-        botonRegistrar = (Button) findViewById(R.id.idButtonRegistrar);
+        Button botonRegistrar = findViewById(R.id.idButtonRegistrar);
         botonRegistrar.setOnClickListener(view -> {
 
             String nombreTarea = "";
@@ -87,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (faltanDatos) {
                 Tarea tarea = new Tarea();
                 tarea.setNombre(nombreTarea);
-                tarea.setDescripción(descripcionTarea);
+                tarea.setDescripcion(descripcionTarea);
                 tarea.setFecha(fechaTarea);
                 tarea.setCoste(costeTarea);
                 tarea.setPrioridad(prioridadTarea);
@@ -95,19 +91,16 @@ public class RegisterActivity extends AppCompatActivity {
                 tarea.setIdUser(MainActivity.usuario.getId());
 
                 DataManager dbManager = new DataManager(RegisterActivity.this);
-                SQLiteDatabase db = dbManager.getWritableDatabase();
                 dbManager.insert(tarea);
                 Toast.makeText(this,R.string.texto_toastCreadoCorrectamente,Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
                 finish();
             }
 
         });
 
-        botonCancel = (Button) findViewById(R.id.idButtonCancelarRegister);
+        Button botonCancel = findViewById(R.id.idButtonCancelarRegister);
         botonCancel.setOnClickListener(view -> {
-            Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
             finish();
         });
     }

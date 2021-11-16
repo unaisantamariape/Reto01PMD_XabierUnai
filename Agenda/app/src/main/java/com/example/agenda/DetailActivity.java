@@ -1,8 +1,7 @@
 package com.example.agenda;
 
-import android.content.DialogInterface;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,9 +17,6 @@ import dataBase.DataManager;
 import dataBase.Tarea;
 
 public class DetailActivity extends AppCompatActivity {
-    private Button botonCancel = null;
-    private Button botonModificar = null;
-    private Button botonBorrar = null;
     private EditText editTextNombre = null;
     private EditText editTextDescripcion = null;
     private EditText editTextFecha = null;
@@ -28,9 +24,9 @@ public class DetailActivity extends AppCompatActivity {
     private Spinner spinnerPrioridad = null;
     private CheckBox checkBoxRealizado = null;
     private String idTareaSelecionada;
-    private Tarea tareaSeleccionada;
 
-        @Override
+    @SuppressLint("SetTextI18n")
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_detail);
@@ -41,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             idTareaSelecionada = extras.getString("ID");
 
-            botonModificar = (Button) findViewById(R.id.idButtonModificarDetail);
+            Button botonModificar = findViewById(R.id.idButtonModificarDetail);
             botonModificar.setOnClickListener(view -> {
                 String nombreTarea = editTextNombre.getText().toString();
                 String descripcionTarea = editTextDescripcion.getText().toString();
@@ -55,19 +51,18 @@ public class DetailActivity extends AppCompatActivity {
                      realizadaTarea = 0;
                 }
 
-                
+
 
                 Tarea tarea = new Tarea();
                 tarea.setId(Integer.parseInt(idTareaSelecionada));
                 tarea.setNombre(nombreTarea);
-                tarea.setDescripción(descripcionTarea);
+                tarea.setDescripcion(descripcionTarea);
                 tarea.setFecha(fechaTarea);
                 tarea.setCoste(costeTarea);
                 tarea.setPrioridad(prioridadTarea);
                 tarea.setRealizada(realizadaTarea);
                 tarea.setIdUser(MainActivity.usuario.getId());
 
-                SQLiteDatabase db = dbManager.getWritableDatabase();
                 dbManager.update(tarea);
 
                 Toast.makeText(this,R.string.texto_toastModificadoCorrectamente,Toast.LENGTH_SHORT).show();
@@ -76,31 +71,26 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
-            botonCancel =  findViewById(R.id.idButtonVolverDetail);
+            Button botonCancel = findViewById(R.id.idButtonVolverDetail);
 
-            botonCancel.setOnClickListener(view -> {
-                Intent intent = new Intent(DetailActivity.this, ListActivity.class);
-                finish();
-            });
+            botonCancel.setOnClickListener(view -> finish());
 
-            botonBorrar =  findViewById(R.id.idButtonBorrarDetail);
+            Button botonBorrar = findViewById(R.id.idButtonBorrarDetail);
 
             botonBorrar.setOnClickListener(view -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
                 builder.setTitle(R.string.texto_tituloAlertDialog);
                 builder.setMessage(R.string.texto_mensajeAlertDialog);
                 builder.setPositiveButton(R.string.texto_aceptarAlertDialog,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // TODO Auto-generated method stub
+                        (dialog, which) -> {
+                            // TODO Auto-generated method stub
 
-                                dbManager.deleteById(idTareaSelecionada);
-
+                            dbManager.deleteById(idTareaSelecionada);
 
 
-                                Intent intent = new Intent(DetailActivity.this,BaseActivity.class);
-                                startActivity(intent);
-                            }
+
+                            Intent intent = new Intent(DetailActivity.this,BaseActivity.class);
+                            startActivity(intent);
                         });
 
                 AlertDialog dialog = builder.create();
@@ -109,14 +99,13 @@ public class DetailActivity extends AppCompatActivity {
             });
 
 
-
-            tareaSeleccionada = dbManager.selectById(Integer.parseInt(idTareaSelecionada));
+        Tarea tareaSeleccionada = dbManager.selectById(Integer.parseInt(idTareaSelecionada));
 
             editTextNombre = findViewById(R.id.idEditTextNombreRegister);
             editTextNombre.setText(tareaSeleccionada.getNombre());
 
             editTextDescripcion = findViewById(R.id.idEditTextDescripcionRegister);
-            editTextDescripcion.setText(tareaSeleccionada.getDescripción());
+            editTextDescripcion.setText(tareaSeleccionada.getDescripcion());
 
             editTextFecha = findViewById(R.id.idEditTextFechaRegister);
             editTextFecha.setText(tareaSeleccionada.getFecha());

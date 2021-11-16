@@ -1,21 +1,17 @@
 package com.example.agenda;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
 import dataBase.DataManager;
 import dataBase.User;
 
 public class MainActivity extends AppCompatActivity {
-    private Button botonLogin = null;
     static User usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         DataManager dbManager = new DataManager(MainActivity.this);
 
-        botonLogin = (Button) findViewById(R.id.idBtnLogin);
+        Button botonLogin = findViewById(R.id.idBtnLogin);
         botonLogin.setOnClickListener(view -> {
             String userIntroducido = ((EditText) findViewById(R.id.idEditTextUsuario)).getText().toString();
             String passIntroducido = ((EditText) findViewById(R.id.idEditTextPass)).getText().toString();

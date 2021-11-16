@@ -1,29 +1,21 @@
 package com.example.agenda;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import dataBase.DataManager;
-import dataBase.Tarea;
 import dataBase.User;
 
 public class BaseActivity extends AppCompatActivity{
-    private ImageButton botonCrear = null;
-    private ImageButton botonVerLista = null;
-    private ImageButton botonVolver = null;
-
 
 
     @Override
@@ -31,24 +23,18 @@ public class BaseActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        DataManager dbManager = new DataManager(BaseActivity.this);
-        SQLiteDatabase db = dbManager.getWritableDatabase();
-
-        botonCrear = (ImageButton) findViewById(R.id.idImageButtonNuevaTarea);
+        ImageButton botonCrear = findViewById(R.id.idImageButtonNuevaTarea);
         botonCrear.setOnClickListener(view -> {
             Intent intent = new Intent(BaseActivity.this,RegisterActivity.class);
             startActivity(intent);
         });
-        botonVerLista = (ImageButton) findViewById(R.id.idImageButtonVerTareas);
+        ImageButton botonVerLista = findViewById(R.id.idImageButtonVerTareas);
         botonVerLista.setOnClickListener(view -> {
             Intent intent = new Intent(BaseActivity.this,ListActivity.class);
             startActivity(intent);
                 });
-        botonVolver = (ImageButton) findViewById(R.id.idImageButtonVolver);
-        botonVolver.setOnClickListener(view -> {
-            Intent intent = new Intent(BaseActivity.this, MainActivity.class);
-            finish();
-        });
+        ImageButton botonVolver = findViewById(R.id.idImageButtonVolver);
+        botonVolver.setOnClickListener(view -> finish());
 
     }
     @Override
@@ -66,18 +52,16 @@ public class BaseActivity extends AppCompatActivity{
                 final EditText editTextName = new EditText(this);
                 alerDialog.setView(editTextName);
 
-                alerDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String passNueva = editTextName.getText().toString();
-                        User usuarioEditado = MainActivity.usuario;
-                        usuarioEditado.setPass(passNueva);
+                alerDialog.setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
+                    String passNueva = editTextName.getText().toString();
+                    User usuarioEditado = MainActivity.usuario;
+                    usuarioEditado.setPass(passNueva);
 
-                        DataManager dbManager = new DataManager(BaseActivity.this);
-                        dbManager.updatePassUser(usuarioEditado);
-                        Toast.makeText(BaseActivity.this,R.string.texto_passCambiada,Toast.LENGTH_SHORT).show();
-                        }
+                    DataManager dbManager = new DataManager(BaseActivity.this);
+                    dbManager.updatePassUser(usuarioEditado);
+                    Toast.makeText(BaseActivity.this,R.string.texto_passCambiada,Toast.LENGTH_SHORT).show();
                     }
-                    );
+                );
                 alerDialog.show();
         }
         return true;

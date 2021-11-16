@@ -163,7 +163,7 @@ public class DataManager extends SQLiteOpenHelper {
 
         //values.put(ID, cliente.getId());
         values.put(NOMBRE, tarea.getNombre());
-        values.put(DESCRIPCION, tarea.getDescripción());
+        values.put(DESCRIPCION, tarea.getDescripcion());
         values.put(COSTE, tarea.getCoste());
         values.put(PRIORIDAD, tarea.getPrioridad());
         values.put(FECHA, tarea.getFecha());
@@ -200,7 +200,7 @@ public class DataManager extends SQLiteOpenHelper {
             cursor.moveToFirst();
             user.setId(cursor.getInt(0));
             user.setNombre(cursor.getString(1));
-            user.setDescripción(cursor.getString(2));
+            user.setDescripcion(cursor.getString(2));
             user.setCoste(cursor.getInt(3));
             user.setPrioridad(cursor.getString(4));
             user.setFecha(cursor.getString(5));
@@ -239,7 +239,7 @@ public class DataManager extends SQLiteOpenHelper {
             SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
             ContentValues args = new ContentValues();
             args.put(NOMBRE, tarea.getNombre());
-            args.put(DESCRIPCION, tarea.getDescripción());
+            args.put(DESCRIPCION, tarea.getDescripcion());
             args.put(FECHA, tarea.getFecha());
             args.put(COSTE, tarea.getCoste());
             args.put(PRIORIDAD, tarea.getPrioridad());

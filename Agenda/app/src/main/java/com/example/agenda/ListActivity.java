@@ -1,12 +1,13 @@
 package com.example.agenda;
 
-import android.content.DialogInterface;
-import static com.example.agenda.R.*;
+import static com.example.agenda.R.color;
+import static com.example.agenda.R.id;
+import static com.example.agenda.R.layout;
+import static com.example.agenda.R.string;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import dataBase.DataManager;
 
 public class ListActivity extends AppCompatActivity {
-    private Button botonCancel = null;
     private Button botonRealizadas = null;
     private Button botonPendientes = null;
     private ArrayList<String> tareas = null;
@@ -36,13 +36,10 @@ public class ListActivity extends AppCompatActivity {
 
         DataManager dbManager = new DataManager(ListActivity.this);
 
-        botonCancel = (Button) findViewById(id.idBtnCancelarListado);
-        botonCancel.setOnClickListener(view -> {
-            Intent intent = new Intent(ListActivity.this, BaseActivity.class);
-            finish();
-        });
+        Button botonCancel = findViewById(id.idBtnCancelarListado);
+        botonCancel.setOnClickListener(view -> finish());
 
-        botonRealizadas = (Button) findViewById(id.idBtnTareasRealizadas);
+        botonRealizadas = findViewById(id.idBtnTareasRealizadas);
         botonRealizadas.setOnClickListener(view -> {
             botonRealizadas.setEnabled(false);
             botonRealizadas.setBackgroundColor(color.grey);
@@ -51,12 +48,12 @@ public class ListActivity extends AppCompatActivity {
             findViewById(id.idBtnTareasPendientes).setEnabled(true);
             tareas = dbManager.selectNombresRealizados();
             ids = dbManager.selectIdsRealizadas();
-            adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
+            adapter = new ArrayAdapter<>(ListActivity.this, layout.activity_adapter,
                     id.idTextViewTareasDB, tareas);
             listView.setAdapter(adapter);
         });
 
-        botonPendientes = (Button) findViewById(id.idBtnTareasPendientes);
+        botonPendientes = findViewById(id.idBtnTareasPendientes);
         botonPendientes.setEnabled(false);
         botonPendientes.setOnClickListener(view -> {
             botonPendientes.setEnabled(false);
@@ -66,7 +63,7 @@ public class ListActivity extends AppCompatActivity {
             findViewById(id.idBtnTareasRealizadas).setEnabled(true);
             tareas = dbManager.selectNombresPendientes();
             ids = dbManager.selectIdsPendientes();
-            adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
+            adapter = new ArrayAdapter<>(ListActivity.this, layout.activity_adapter,
                     id.idTextViewTareasDB, tareas);
             listView.setAdapter(adapter);
         });
@@ -75,45 +72,35 @@ public class ListActivity extends AppCompatActivity {
         tareas = dbManager.selectNombresPendientes();
         ids = dbManager.selectIdsPendientes();
 
-        adapter = new ArrayAdapter<String>(ListActivity.this, layout.activity_adapter,
+        adapter = new ArrayAdapter<>(ListActivity.this, layout.activity_adapter,
                 id.idTextViewTareasDB, tareas);
 
-        listView = (ListView) findViewById(id.idListViewTareas);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                int posicion = i;
-                String tareaClicada = ids.get(i).toString();
+        listView = findViewById(id.idListViewTareas);
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            String tareaClicada = ids.get(i).toString();
 
-                Intent intent = new Intent(ListActivity.this,DetailActivity.class);
-                intent.putExtra("ID",tareaClicada);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(ListActivity.this,DetailActivity.class);
+            intent.putExtra("ID",tareaClicada);
+            startActivity(intent);
         });
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
-                builder.setTitle(string.texto_tituloAlertDialog);
-                builder.setMessage(string.texto_mensajeAlertDialog);
-                builder.setPositiveButton(string.texto_aceptarAlertDialog,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // TODO Auto-generated method stub
-                                int posicion = i;
-                                String idClicado = ids.get(i).toString();
-                                tareas.remove(i);
+        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+            builder.setTitle(string.texto_tituloAlertDialog);
+            builder.setMessage(string.texto_mensajeAlertDialog);
+            builder.setPositiveButton(string.texto_aceptarAlertDialog,
+                    (dialog, which) -> {
+                        // TODO Auto-generated method stub
+                        String idClicado = ids.get(i).toString();
+                        tareas.remove(i);
 
-                                dbManager.deleteById(idClicado);
+                        dbManager.deleteById(idClicado);
 
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
+                        adapter.notifyDataSetChanged();
+                    });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                return true;
-            }
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true;
         });
         listView.setAdapter(adapter);
     }
