@@ -41,20 +41,7 @@ public class MainActivity extends AppCompatActivity {
         boolean remenberCheck = remenberLogin.getBoolean(PREF_SWITCH, false);
 
         switchRecordar = (Switch) findViewById(R.id.idSwitchRecordarUser);
-        switchRecordar.setOnCheckedChangeListener((compoundButton, b) -> {
-            if (switchRecordar.isChecked()){
-                editor.putString(PREF_USERNAME, ((EditText) findViewById(R.id.idEditTextUsuario)).getText().toString());
-                editor.putBoolean(PREF_SWITCH, ((Switch) findViewById(R.id.idSwitchRecordarUser)).isChecked());
 
-                editor.commit();
-            } else {
-                editor.putString(PREF_USERNAME, "");
-                editor.putBoolean(PREF_SWITCH, false);
-
-                editor.commit();
-            }
-
-        });
         editTextUser = (EditText) findViewById(R.id.idEditTextUsuario);
         switchRecordar.setChecked(remenberCheck);
         editTextUser.setText(remenberUser);
@@ -66,6 +53,17 @@ public class MainActivity extends AppCompatActivity {
 
             if(dbManager.selectUserForLogin(userIntroducido,passIntroducido)){
                 //Login correcto
+                if (switchRecordar.isChecked()){
+                    editor.putString(PREF_USERNAME, ((EditText) findViewById(R.id.idEditTextUsuario)).getText().toString());
+                    editor.putBoolean(PREF_SWITCH, ((Switch) findViewById(R.id.idSwitchRecordarUser)).isChecked());
+
+                    editor.commit();
+                } else {
+                    editor.putString(PREF_USERNAME, "");
+                    editor.putBoolean(PREF_SWITCH, false);
+
+                    editor.commit();
+                }
                 usuario = dbManager.selectByName(userIntroducido);
                 Intent intent = new Intent(MainActivity.this,BaseActivity.class);
                 startActivity(intent);
