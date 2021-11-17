@@ -1,26 +1,22 @@
 package com.example.agenda;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
 import dataBase.DataManager;
 import dataBase.User;
 
 public class MainActivity extends AppCompatActivity {
-    private Button botonLogin = null;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch switchRecordar = null;
-    private EditText editTextUser = null;
     static User usuario;
     public static final String PREFS_NAME ="REMEMBER ME";
     public static final String PREF_USERNAME= "nombre";
@@ -42,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
         switchRecordar = (Switch) findViewById(R.id.idSwitchRecordarUser);
 
-        editTextUser = (EditText) findViewById(R.id.idEditTextUsuario);
+        @SuppressLint("CutPasteId") EditText editTextUser = (EditText) findViewById(R.id.idEditTextUsuario);
         switchRecordar.setChecked(remenberCheck);
         editTextUser.setText(remenberUser);
 
-        botonLogin = (Button) findViewById(R.id.idBtnLogin);
+        Button botonLogin = (Button) findViewById(R.id.idBtnLogin);
         botonLogin.setOnClickListener(view -> {
-            String userIntroducido = ((EditText) findViewById(R.id.idEditTextUsuario)).getText().toString();
+            @SuppressLint("CutPasteId") String userIntroducido = ((EditText) findViewById(R.id.idEditTextUsuario)).getText().toString();
             String passIntroducido = ((EditText) findViewById(R.id.idEditTextPass)).getText().toString();
 
             if(dbManager.selectUserForLogin(userIntroducido,passIntroducido)){
@@ -57,13 +53,12 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString(PREF_USERNAME, ((EditText) findViewById(R.id.idEditTextUsuario)).getText().toString());
                     editor.putBoolean(PREF_SWITCH, ((Switch) findViewById(R.id.idSwitchRecordarUser)).isChecked());
 
-                    editor.commit();
                 } else {
                     editor.putString(PREF_USERNAME, "");
                     editor.putBoolean(PREF_SWITCH, false);
 
-                    editor.commit();
                 }
+                editor.apply();
                 usuario = dbManager.selectByName(userIntroducido);
                 Intent intent = new Intent(MainActivity.this,BaseActivity.class);
                 startActivity(intent);
